@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PT. Kopi Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Desain Multimedia: Tema Warna Konsisten (Coklat/Kopi) */
+        body {
+            background-color: #fdf5e6;
+            /* Old Lace */
+            color: #4b3621;
+            /* Cafe Noir */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .bg-coffee {
+            background-color: #6f4e37 !important;
+            /* Coffee */
+        }
+
+        .text-coffee {
+            color: #6f4e37 !important;
+        }
+
+        .navbar {
+            background-color: #6f4e37;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+            background-color: #fff;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #8b6b4e, #6f4e37);
+            color: white;
+        }
+
+        .btn-action {
+            background-color: #a0522d;
+            /* Sienna */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .btn-action:hover {
+            background-color: #8b4513;
+            /* Saddle Brown */
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control:focus {
+            border-color: #6f4e37;
+            box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+        }
+
+        footer {
+            background-color: #3e2723;
+            color: #d7ccc8;
+            margin-top: 50px;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Instruksi 1: Navbar Lengkap -->
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4 sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="https://via.placeholder.com/30?text=K" alt="Icon"
+                    class="d-inline-block align-text-top me-2 rounded-circle">
+                PT. Kopi Nusantara
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="produk.html">Produk</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold text-coffee">Dashboard Penjualan</h2>
+                <p class="text-muted">Performa bisnis dan analisis produk terkini.</p>
+            </div>
+            <div class="text-end text-muted small">
+                <!-- Date will be dynamic ideally, but static for now is fine or via JS -->
+                <span id="currentDate"></span>
+            </div>
+        </div>
+
+        <!-- Instruksi 2: KPI Section -->
+        <div class="row mb-5 g-3">
+            <div class="col-md-4">
+                <div class="card kpi-card h-100 p-3">
+                    <div class="card-body text-center">
+                        <h6 class="card-title text-uppercase opacity-75">Total Pendapatan (YTD)</h6>
+                        <h2 class="display-6 fw-bold my-2" id="kpiTotalRevenue">Rp 0</h2>
+                        <small class="text-light"><i class="bi bi-arrow-up"></i> +12% dari tahun lalu</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card kpi-card h-100 p-3" style="background: linear-gradient(135deg, #a1887f, #795548);">
+                    <div class="card-body text-center">
+                        <h6 class="card-title text-uppercase opacity-75">Rata-rata Transaksi</h6>
+                        <h2 class="display-6 fw-bold my-2" id="kpiAvgTransaction">Rp 0</h2>
+                        <small class="text-light">Stabil bulan ini</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card kpi-card h-100 p-3"
+                    style="background: linear-gradient(135deg, #d7ccc8, #8d6e63); color: #3e2723;">
+                    <div class="card-body text-center">
+                        <h6 class="card-title text-uppercase opacity-75">Total Unit Terjual</h6>
+                        <h2 class="display-6 fw-bold my-2" id="kpiTotalUnits">0</h2>
+                        <small class="text-dark">Produk terlaris: Latte</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Kolom Utama: Grafik -->
+            <div class="col-lg-8">
+                <!-- Instruksi 3: Grafik Tren Penjualan -->
+                <div class="card mb-4">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title fw-bold text-coffee mb-0">Tren Penjualan Bulanan</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="salesTrendChart" height="150"></canvas>
+                        <!-- Instruksi 5: Call to Action 1 -->
+                        <div class="alert alert-light border-0 mt-3 d-flex align-items-center justify-content-between"
+                            role="alert" style="background-color: #f8f1eb;">
+                            <div>
+                                <strong>Analysis:</strong> Tren penjualan meningkat di akhir tahun.
+                            </div>
+                            <button class="btn btn-action btn-sm" onclick="window.location.href='promosi.html'">Buat
+                                Kampanye
+                                Promosi</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instruksi 4: Grafik Perbandingan Produk -->
+                <div class="card mb-4">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title fw-bold text-coffee mb-0">Perforrma Produk Utama</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="productPerfChart" height="150"></canvas>
+                        <!-- Instruksi 5: Call to Action 2 -->
+                        <div class="alert alert-light border-0 mt-3 d-flex align-items-center justify-content-between"
+                            role="alert" style="background-color: #f8f1eb;">
+                            <div>
+                                <strong>Insight:</strong> Stok Espresso menipis karena permintaan tinggi.
+                            </div>
+                            <button class="btn btn-action btn-sm" onclick="window.location.href='supplier.html'">Order
+                                Bahan Baku</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Samping: Formulir -->
+            <div class="col-lg-4">
+                <!-- Instruksi 6: Formulir Petisi -->
+                <div class="card sticky-top mb-4" style="top: 90px; z-index: 1;">
+                    <div class="card-header bg-coffee text-white py-3">
+                        <h5 class="card-title mb-0">Kirim Masukan & Petisi</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="small text-muted">Aspirasi Anda akan tampil di papan publik selama 24 jam.</p>
+                        <form id="feedbackForm">
+                            <div class="mb-3">
+                                <label for="inputName" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="inputName" required
+                                    placeholder="Contoh: Budi Santoso">
+                            </div>
+                            <!-- Email removed from public form to avoid privacy issues in public board concept, or keep but don't display -->
+                            <div class="mb-3">
+                                <label for="inputMessage" class="form-label">Pesan / Petisi</label>
+                                <textarea class="form-control" id="inputMessage" rows="4" required
+                                    placeholder="Tulis aspirasi Anda..."></textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-coffee">Kirim Petisi Publik</button>
+                            </div>
+                        </form>
+                        <!-- Notifikasi -->
+                        <div id="formSuccessMessage" class="alert alert-success mt-3 d-none text-center small"
+                            role="alert">
+                            <strong>Terkirim!</strong> Tampil di papan bawah.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Papan Petisi Publik -->
+                <div class="card">
+                    <div class="card-header bg-white border-bottom py-3">
+                        <h6 class="card-title fw-bold text-coffee mb-0"><i class="bi bi-megaphone"></i> Suara Pelanggan
+                            (24 Jam)</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush" id="petitionList">
+                            <!-- Populated by script.js -->
+                            <div class="text-center py-4">
+                                <span class="spinner-border spinner-border-sm text-muted"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-1">&copy; 2024 PT. Kopi Nusantara. All Rights Reserved.</p>
+            <p class="small opacity-75">Owner: Sangyoga Wahyu Utomo | Email: sangyogawahyuu@gmail.com</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>

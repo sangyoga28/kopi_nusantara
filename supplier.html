@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Order Bahan Baku - Internal Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background-color: #6f4e37;
+        }
+
+        .btn-coffee {
+            background-color: #6f4e37;
+            color: white;
+        }
+
+        .btn-coffee:hover {
+            background-color: #4b3621;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fs-6" href="dashboard.html"><i class="bi bi-arrow-left"></i> Kembali ke Dashboard</a>
+            <span class="navbar-text text-white">Manajemen Stok</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <h4 class="card-title mb-4 text-coffee fw-bold">Formulir Pemesanan Supplier</h4>
+                <form id="supplierForm">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Item Bahan Baku</th>
+                                <th>Stok Saat Ini</th>
+                                <th>Supplier Utama</th>
+                                <th width="150">Jumlah Order</th>
+                                <th>Satuan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Biji Kopi Arabica Premium</td>
+                                <td class="text-danger fw-bold">12 kg (Low)</td>
+                                <td>PT. Kopi Sumber Alam</td>
+                                <td><input type="number" class="form-control" name="order_beans" min="0" value="50">
+                                </td>
+                                <td>kg</td>
+                            </tr>
+                            <tr>
+                                <td>Susu UHT Full Cream</td>
+                                <td>45 Liter</td>
+                                <td>CV. Susu Segar Jaya</td>
+                                <td><input type="number" class="form-control" name="order_milk" min="0" value="0"></td>
+                                <td>Liter</td>
+                            </tr>
+                            <tr>
+                                <td>Gula Aren Murni</td>
+                                <td>20 kg</td>
+                                <td>UD. Manis Alami</td>
+                                <td><input type="number" class="form-control" name="order_sugar" min="0" value="10">
+                                </td>
+                                <td>kg</td>
+                            </tr>
+                            <tr>
+                                <td>Cup Plastik 16oz</td>
+                                <td class="text-danger fw-bold">50 pcs (Critical)</td>
+                                <td>PT. Plastikindo</td>
+                                <td><input type="number" class="form-control" name="order_cup" min="0" value="500"></td>
+                                <td>pcs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="mb-3 mt-4">
+                        <label class="form-label">Catatan Tambahan untuk Supplier</label>
+                        <textarea class="form-control" name="notes" rows="2"
+                            placeholder="Instruksi khusus pengiriman..."></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-coffee btn-lg px-5">Kirim Purchase Order (PO)</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('supplierForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Purchase Order (PO) Berhasil Dikirim ke Supplier! Cek Console.');
+            console.log('--- Data Order Supplier ---');
+            const data = new FormData(e.target);
+            for (let [k, v] of data.entries()) {
+                if (v > 0 || k === 'notes') console.log(k, v);
+            }
+            e.target.reset();
+            setTimeout(() => window.location.href = 'dashboard.html', 1500);
+        });
+    </script>
+</body>
+
+</html>

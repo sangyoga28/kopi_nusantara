@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - PT. Kopi Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fdf5e6;
+            color: #4b3621;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background-color: #6f4e37;
+        }
+
+        .bg-coffee {
+            background-color: #6f4e37;
+            color: white;
+        }
+
+        .btn-coffee {
+            background-color: #6f4e37;
+            color: white;
+        }
+
+        .btn-coffee:hover {
+            background-color: #4b3621;
+            color: white;
+        }
+
+        @media print {
+
+            .no-print,
+            .navbar,
+            .btn {
+                display: none !important;
+            }
+
+            body {
+                background-color: white;
+            }
+
+            .card {
+                border: 1px solid #000 !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">PT. Kopi Nusantara</a>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-coffee">Keranjang Anda</span>
+                    <span class="badge bg-coffee rounded-pill cart-count">0</span>
+                </h4>
+                <ul class="list-group mb-3 shadow-sm" id="orderSummary">
+                    <li class="list-group-item text-center">Memuat keranjang...</li>
+                </ul>
+                <div class="card p-2 border-0 shadow-sm bg-light">
+                    <div class="d-flex justify-content-between px-3 py-2">
+                        <span class="fw-bold">Total (IDR)</span>
+                        <strong id="totalPrice">Rp 0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3 text-coffee fw-bold">Detail Pengiriman & Pembayaran</h4>
+                <form id="checkoutForm" class="needs-validation">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">Nama Depan</label>
+                            <input type="text" class="form-control" id="firstName" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Nama Belakang</label>
+                            <input type="text" class="form-control" id="lastName" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="contoh@email.com" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="address" class="form-label">Alamat Lengkap</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="country" class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="paymentMethod" required>
+                                <option value="">Pilih...</option>
+                                <option>QRIS (GoPay/OVO/Dana)</option>
+                                <option>Transfer Bank (BCA/Mandiri)</option>
+                                <option>Kartu Kredit</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-coffee btn-lg" type="submit">Bayar Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

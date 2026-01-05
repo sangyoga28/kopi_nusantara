@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tentang Kami - PT. Kopi Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fdf5e6;
+            color: #4b3621;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background-color: #6f4e37;
+        }
+
+        .text-coffee {
+            color: #6f4e37;
+        }
+
+        .bg-coffee {
+            background-color: #6f4e37;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">PT. Kopi Nusantara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="produk.html">Produk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="tentang.html">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6">
+                <!-- Image Placeholder if hero exists, else standard -->
+                <img src="images/hero.png" onerror="this.src='https://via.placeholder.com/600x400'"
+                    class="img-fluid rounded shadow" alt="Interior Cafe">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="fw-bold text-coffee mb-3">Cerita Kami</h2>
+                <p class="lead">Lahir dari kecintaan terhadap biji kopi lokal, PT. Kopi Nusantara hadir untuk membawa
+                    cita rasa autentik Indonesia ke cangkir Anda.</p>
+                <p>Kami bekerja sama langsung dengan petani kopi di seluruh nusantara, dari Gayo hingga Wamena,
+                    memastikan setiap biji yang kami sangrai memiliki kualitas terbaik dan jejak yang adil.</p>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5 text-center">
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="text-coffee fw-bold">Visi</h4>
+                    <p>Menjadi brand kopi kebanggaan Indonesia yang dikenal dunia.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="text-coffee fw-bold">Misi</h4>
+                    <ul class="list-unstyled text-start">
+                        <li>1. Menyajikan kopi berkualitas tinggi.</li>
+                        <li>2. Memberdayakan petani lokal.</li>
+                        <li>3. Menciptakan pengalaman ngopi yang hangat.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="text-coffee fw-bold">Nilai</h4>
+                    <p>Integritas, Kualitas, dan Kebersamaan.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 bg-coffee p-4 rounded text-center">
+            <h3 class="mb-4">Meet the Owner</h3>
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <img src="https://via.placeholder.com/150?text=Owner"
+                    class="rounded-circle border border-3 border-white mb-3" width="150" height="150"
+                    alt="Sangyoga Wahyu Utomo">
+                <h4 class="fw-bold">Sangyoga Wahyu Utomo</h4>
+                <p class="fst-italic opacity-75">Founder & CEO</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white text-decoration-none"><i class="bi bi-instagram"></i> @yogawoetomo</a>
+                    <a href="#" class="text-white text-decoration-none"><i class="bi bi-whatsapp"></i> 08991622997</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
