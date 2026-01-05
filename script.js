@@ -27,6 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // ==========================================
     // 2. PROMO BANNER LOGIC (RICH OFFER WIDGET)
     // ==========================================
+
+    // Initialize Default "New Year" Promo if none exists
+    if (!localStorage.getItem('active_promo')) {
+        const defaultPromo = {
+            promoName: "New Year Kickoff Sale",
+            discountType: "Persentase (%)",
+            discountValue: "25",
+            startDate: new Date().toISOString().split('T')[0],
+            endDate: "2026-01-31",
+            target: "allUsers"
+        };
+        localStorage.setItem('active_promo', JSON.stringify(defaultPromo));
+    }
+
     const activePromo = JSON.parse(localStorage.getItem('active_promo'));
     if (activePromo && window.location.pathname.includes('dashboard')) {
         const dashboardContainer = document.querySelector('.container.pb-5');
