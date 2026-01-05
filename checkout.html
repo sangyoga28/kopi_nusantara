@@ -35,28 +35,41 @@
             color: white;
         }
 
+        .btn-coffee {
+            transition: all 0.3s ease;
+        }
+
+        .btn-coffee:hover {
+            background-color: #5a3d2a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Updated Print Styles */
         @media print {
-
-            .no-print,
-            .navbar,
-            .btn {
-                display: none !important;
-            }
-
-            body {
+            #printableArea {
+                visibility: visible;
+                display: block !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 20px;
                 background-color: white;
+                color: black;
             }
 
-            .card {
-                border: 1px solid #000 !important;
-                box-shadow: none !important;
+            /* Hide everything else */
+            body>*:not(#printableArea) {
+                display: none !important;
             }
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4 shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
                 <img src="images/logo_new.jpg" alt="Logo" width="30" height="30"
@@ -64,29 +77,20 @@
                 PT. Kopi Nusantara
             </a>
 
+            <div class="d-flex">
+                <a href="produk.html" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-arrow-left me-1"></i> Kembali ke Produk
+                </a>
+            </div>
         </div>
     </nav>
 
-    <div class="container py-4">
-        <div class="row g-5">
-            <div class="col-md-5 col-lg-4 order-md-last">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-coffee">Keranjang Anda</span>
-                    <span class="badge bg-coffee rounded-pill cart-count">0</span>
-                </h4>
-                <ul class="list-group mb-3 shadow-sm" id="orderSummary">
-                    <li class="list-group-item text-center">Memuat keranjang...</li>
-                </ul>
-                <div class="card p-2 border-0 shadow-sm bg-light">
-                    <div class="d-flex justify-content-between px-3 py-2">
-                        <span class="fw-bold">Total (IDR)</span>
-                        <strong id="totalPrice">Rp 0</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-7 col-lg-8">
+    <div class="container py-5">
+        <h2 class="text-center text-coffee fw-bold mb-4">Checkout</h2>
+        <div class="row g-4">
+            <div class="col-lg-8">
                 <h4 class="mb-3 text-coffee fw-bold">Detail Pengiriman & Pembayaran</h4>
+
                 <form id="checkoutForm" class="needs-validation">
                     <div class="row g-3">
                         <div class="col-sm-6">
@@ -105,8 +109,8 @@
                             <label for="address" class="form-label">Alamat Lengkap</label>
                             <textarea class="form-control" id="address" rows="3" required></textarea>
                         </div>
-                        <div class="col-md-5">
-                            <label for="country" class="form-label">Metode Pembayaran</label>
+                        <div class="col-md-6">
+                            <label for="paymentMethod" class="form-label">Metode Pembayaran</label>
                             <select class="form-select" id="paymentMethod" required>
                                 <option value="">Pilih...</option>
                                 <option>QRIS (GoPay/OVO/Dana)</option>
@@ -114,51 +118,96 @@
                                 <option>Kartu Kredit</option>
                             </select>
                         </div>
+                        <div class="col-12">
+                            <label for="customerNotes" class="form-label">Catatan untuk Penjual (Opsional)</label>
+                            <textarea class="form-control" id="customerNotes" rows="3"
+                                placeholder="Contoh: Tolong kirim pagi hari, atau instruksi khusus lainnya..."></textarea>
+                        </div>
                     </div>
 
                     <hr class="my-4">
-
                     <button class="w-100 btn btn-coffee btn-lg" type="submit">Bayar Sekarang</button>
                 </form>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm sticky-top" style="top: 20px;">
+                    <div class="card-header bg-coffee text-white">
+                        <h5 class="mb-0">Ringkasan Pesanan</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush mb-3" id="orderSummary">
+                            <li class="list-group-item text-center">Memuat keranjang...</li>
+                        </ul>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Total</h5>
+                            <h5 class="mb-0 text-coffee" id="totalPrice">Rp 0</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Updated: Inline Receipt Container -->
+                <div id="receiptContainer" class="mt-4"></div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="mt-5 py-4 text-white" style="background-color: #3e2723;">
+    <footer class="mt-5 py-4 text-white text-center" style="background-color: #3e2723;">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold">PT. Kopi Nusantara</h5>
-                    <p class="small">Menyajikan cita rasa kopi terbaik dari seluruh penjuru negeri.</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h6 class="fw-bold">Kontak</h6>
-                    <p class="small mb-1"><i class="bi bi-whatsapp"></i> 0899-1622-997</p>
-                    <p class="small mb-1"><i class="bi bi-envelope"></i> sangyogawahyuu@gmail.com</p>
-                    <p class="small"><i class="bi bi-instagram"></i> @yogawoetomo</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h6 class="fw-bold">Navigasi</h6>
-                    <ul class="list-unstyled small">
-                        <li><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
-                        <li><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
-                        <li><a href="dashboard.html" class="text-white text-decoration-none">Dashboard</a></li>
-                        <li><a href="tentang.html" class="text-white text-decoration-none">Tentang Kami</a></li>
-                        <li><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
-                    </ul>
-                </div>
+            <h5 class="fw-bold mb-2">PT. Kopi Nusantara</h5>
+            <p class="small mb-3">Menyajikan cita rasa kopi terbaik dari seluruh penjuru negeri</p>
+
+            <div class="d-flex justify-content-center gap-4 mb-3 flex-wrap">
+                <a href="https://wa.me/628991622997" class="text-white text-decoration-none small" target="_blank">
+                    <i class="bi bi-whatsapp"></i> 0899-1622-997
+                </a>
+                <a href="mailto:sangyogawahyuu@gmail.com" class="text-white text-decoration-none small">
+                    <i class="bi bi-envelope"></i> sangyogawahyuu@gmail.com
+                </a>
+                <a href="https://instagram.com/yogawoetomo" class="text-white text-decoration-none small"
+                    target="_blank">
+                    <i class="bi bi-instagram"></i> @yogawoetomo
+                </a>
             </div>
-            <hr class="bg-white">
-            <div class="text-center small">
-                <p class="mb-1">Created by <strong>Sangyoga Wahyu Utomo</strong> | Owner: <strong>Sangyoga Wahyu
-                        Utomo</strong></p>
-                <p class="mb-0">&copy; 2026 PT. Kopi Nusantara. All rights reserved.</p>
+
+            <div class="d-flex justify-content-center gap-3 mb-3 flex-wrap small">
+                <a href="index.html" class="text-white text-decoration-none">Beranda</a>
+                <span class="text-white-50">•</span>
+                <a href="produk.html" class="text-white text-decoration-none">Produk</a>
+                <span class="text-white-50">•</span>
+                <a href="dashboard.html" class="text-white text-decoration-none">Dashboard</a>
+                <span class="text-white-50">•</span>
+                <a href="tentang.html" class="text-white text-decoration-none">Tentang Kami</a>
+                <span class="text-white-50">•</span>
+                <a href="kontak.html" class="text-white text-decoration-none">Kontak</a>
             </div>
+
+            <hr class="bg-white opacity-25 my-3">
+
+            <p class="small mb-1">Created by <strong>Sangyoga Wahyu Utomo</strong></p>
+            <p class="small mb-0">&copy; 2026 PT. Kopi Nusantara. All rights reserved.</p>
         </div>
     </footer>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Success Toast (Top Center) -->
+    <div id="successToast" class="toast align-items-center text-white bg-success border-0" role="alert"
+        aria-live="assertive" aria-atomic="true"
+        style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-check-circle-fill me-2"></i> Pembayaran Berhasil!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+
+    <!-- Hidden Printable Area -->
+    <div id="printableArea" class="d-none"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #fdf5e6;
+            color: #4b3621;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -17,14 +18,41 @@
             background-color: #6f4e37;
         }
 
+        .bg-coffee {
+            background-color: #6f4e37;
+            color: white;
+        }
+
         .btn-coffee {
             background-color: #6f4e37;
             color: white;
+            transition: all 0.3s ease;
         }
 
         .btn-coffee:hover {
             background-color: #4b3621;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hover Effects */
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffd700 !important;
+            transform: translateX(3px);
+        }
+
+        a {
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffd700 !important;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -93,36 +121,40 @@
     </div>
 
     <!-- Footer -->
-    <footer class="mt-5 py-4 text-white" style="background-color: #3e2723;">
+    <footer class="mt-5 py-4 text-white text-center" style="background-color: #3e2723;">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold">PT. Kopi Nusantara</h5>
-                    <p class="small">Menyajikan cita rasa kopi terbaik dari seluruh penjuru negeri.</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h6 class="fw-bold">Kontak</h6>
-                    <p class="small mb-1"><i class="bi bi-whatsapp"></i> 0899-1622-997</p>
-                    <p class="small mb-1"><i class="bi bi-envelope"></i> sangyogawahyuu@gmail.com</p>
-                    <p class="small"><i class="bi bi-instagram"></i> @yogawoetomo</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h6 class="fw-bold">Navigasi</h6>
-                    <ul class="list-unstyled small">
-                        <li><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
-                        <li><a href="produk.html" class="text-white text-decoration-none">Produk</a></li>
-                        <li><a href="dashboard.html" class="text-white text-decoration-none">Dashboard</a></li>
-                        <li><a href="tentang.html" class="text-white text-decoration-none">Tentang Kami</a></li>
-                        <li><a href="kontak.html" class="text-white text-decoration-none">Kontak</a></li>
-                    </ul>
-                </div>
+            <h5 class="fw-bold mb-2">PT. Kopi Nusantara</h5>
+            <p class="small mb-3">Menyajikan cita rasa kopi terbaik dari seluruh penjuru negeri</p>
+
+            <div class="d-flex justify-content-center gap-4 mb-3 flex-wrap">
+                <a href="https://wa.me/628991622997" class="text-white text-decoration-none small" target="_blank">
+                    <i class="bi bi-whatsapp"></i> 0899-1622-997
+                </a>
+                <a href="mailto:sangyogawahyuu@gmail.com" class="text-white text-decoration-none small">
+                    <i class="bi bi-envelope"></i> sangyogawahyuu@gmail.com
+                </a>
+                <a href="https://instagram.com/yogawoetomo" class="text-white text-decoration-none small"
+                    target="_blank">
+                    <i class="bi bi-instagram"></i> @yogawoetomo
+                </a>
             </div>
-            <hr class="bg-white">
-            <div class="text-center small">
-                <p class="mb-1">Created by <strong>Sangyoga Wahyu Utomo</strong> | Owner: <strong>Sangyoga Wahyu
-                        Utomo</strong></p>
-                <p class="mb-0">&copy; 2026 PT. Kopi Nusantara. All rights reserved.</p>
+
+            <div class="d-flex justify-content-center gap-3 mb-3 flex-wrap small">
+                <a href="index.html" class="text-white text-decoration-none">Beranda</a>
+                <span class="text-white-50">•</span>
+                <a href="produk.html" class="text-white text-decoration-none">Produk</a>
+                <span class="text-white-50">•</span>
+                <a href="dashboard.html" class="text-white text-decoration-none">Dashboard</a>
+                <span class="text-white-50">•</span>
+                <a href="tentang.html" class="text-white text-decoration-none">Tentang Kami</a>
+                <span class="text-white-50">•</span>
+                <a href="kontak.html" class="text-white text-decoration-none">Kontak</a>
             </div>
+
+            <hr class="bg-white opacity-25 my-3">
+
+            <p class="small mb-1">Created by <strong>Sangyoga Wahyu Utomo</strong></p>
+            <p class="small mb-0">&copy; 2026 PT. Kopi Nusantara. All rights reserved.</p>
         </div>
     </footer>
 
@@ -131,12 +163,16 @@
     <script>
         document.getElementById('promoForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Kampanye Promosi Berhasil Diterbitkan! Cek Console.');
-            console.log('--- Data Promosi ---');
-            const data = new FormData(e.target);
-            for (let [k, v] of data.entries()) console.log(k, v);
+            const formData = new FormData(e.target);
+            const promoData = {};
+            formData.forEach((value, key) => (promoData[key] = value));
+
+            // Save to LocalStorage
+            localStorage.setItem('active_promo', JSON.stringify(promoData));
+
+            alert('Kampanye Promosi Berhasil Diterbitkan!');
             e.target.reset();
-            setTimeout(() => window.location.href = 'dashboard.html', 1500);
+            window.location.href = 'dashboard.html';
         });
     </script>
 </body>

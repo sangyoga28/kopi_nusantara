@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Penjualan - PT. Kopi Nusantara</title>
+    <link rel="icon" type="image/jpeg" href="images/logo_new.jpg">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #fdf5e6;
+            color: #4b3621;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background-color: #6f4e37;
+        }
+
+        .text-coffee {
+            color: #6f4e37 !important;
+        }
+
+        .btn-coffee {
+            background-color: #6f4e37;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-coffee:hover {
+            background-color: #4b3621;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hover Effects */
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffd700 !important;
+            transform: translateX(3px);
+        }
+
+        footer a {
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffd700 !important;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4 sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="images/logo_new.jpg" alt="Logo" width="30" height="30"
+                    class="d-inline-block align-text-top rounded-circle me-2">
+                PT. Kopi Nusantara
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="produk.html">Produk</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+        <div class="d-flex justify-content-start align-items-center mb-4">
+            <a href="dashboard.html" class="btn btn-outline-secondary btn-sm me-3"><i class="bi bi-arrow-left"></i>
+                Kembali</a>
+            <h2 class="fw-bold text-coffee mb-0">Riwayat Penjualan</h2>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3 border-0">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="mb-0 fw-bold">Rekapan Transaksi</h5>
+                        <p class="text-muted small mb-0">Data transaksi realtime dari seluruh channel.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                        <div class="d-inline-block">
+                            <label for="filterPeriod" class="form-label visually-hidden">Periode</label>
+                            <select class="form-select form-select-sm" id="filterPeriod">
+                                <option value="all">Semua Riwayat</option>
+                                <option value="weekly">Mingguan (7 Hari Terakhir)</option>
+                                <option value="monthly" selected>Bulanan (Bulan Ini)</option>
+                                <option value="yearly">Tahunan (Tahun Ini)</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-coffee btn-sm ms-2" onclick="window.print()"><i
+                                class="bi bi-printer"></i> Cetak Laporan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">ID Transaksi</th>
+                                <th>Tanggal & Waktu</th>
+                                <th>Produk</th>
+                                <th>Total</th>
+                                <th>Metode Bayar</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Populated by JS -->
+                            <tr>
+                                <td colspan="6" class="text-center py-4">Memuat data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white py-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="small text-muted" id="showingInfo">Menampilkan 0 data</div>
+                    <nav>
+                        <ul class="pagination pagination-sm mb-0 justify-content-end" id="paginationContainer"></ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 py-4 text-white text-center" style="background-color: #3e2723;">
+        <div class="container">
+            <h5 class="fw-bold mb-2">PT. Kopi Nusantara</h5>
+            <p class="small mb-3">Menyajikan cita rasa kopi terbaik dari seluruh penjuru negeri</p>
+            <p class="small mb-1">Created by <strong>Sangyoga Wahyu Utomo</strong></p>
+            <p class="small mb-0">&copy; 2026 PT. Kopi Nusantara. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
